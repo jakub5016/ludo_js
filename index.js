@@ -18,11 +18,14 @@ const red_pawn_4 = document.getElementById('red_pawn_4')
 red_pawn_4.style.top = red_y +35+ 'px'
 red_pawn_4.style.left = red_x +35+ 'px'
 
+const div = document.getElementById("number")
 
 // Catch clicking a button
 document.getElementById('dice_roller').onclick = function() {
     let number_got = Math.floor(Math.random() * 7)
     console.log(number_got)
+    div.innerHTML = "Number: " +number_got
+
     if(red_pawn_1.out == true){
         red_pawn_1.style.top = red_y -(35*number_got)+ 'px'
     }
