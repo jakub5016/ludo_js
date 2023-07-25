@@ -1,30 +1,7 @@
-// class Node {
-//     constructor(data, isLast) {
-//         this.head = data;
-//         this.data = data;
-//         this.next = null;
-//         this.tail = data
-//     }
-//     insertAtEnd(newData){
-//         this.next = Node(newData)
-//     }
-// }
-
-// let one = new Node(3);
-// let two = new Node(5);
-// let three = new Node(9);
-
-// // Connect nodes
-// one.next = two;
-// two.next = three;
-// three.next = one;
-
-
-// const red_movment_table= [{left:4, top:1}, {left:0, top:1}, {left:0, top:1}]
-
-// console.log(red_movment_table[0]['left'])
 
 /**
+ * Class to describe the way how board behavies.
+ * Start of this linked list is in a place where red pawn starts
  *
  */
 class circularLinkedList{
@@ -44,8 +21,37 @@ class circularLinkedList{
     }
 
 }
+/**
+ * Pawn that is on the board (not in base or outside the board)
+ * Contains: color and current position
+ */
+class pawn{
+    constructor(color){
+        if (color == 'red'){
+            this.currentPosition = 0;
+            this.x = 240
+            this.y = 505
+        }
+        else{
+            throw new Error("Bad color");
+        }
 
+        this.color = color
+    }
 
-myArray = [3,4,5]
-linkedList = new circularLinkedList(myArray)
-console.log(linkedList.getData(6))
+    move(how_to_go){
+        this.currentPosition += 1
+        this.x = (how_to_go[0] * 35) + this.x
+        this.y = (how_to_go[1] * 35) + this.y
+    }
+}
+
+function makeMovement(numberOfMeshes, pawn, boardStatus){
+    for (let i =0; i < numberOfMeshes; i++){
+        how_to_go = boardStatus.getData(pawn.currentPosition);
+        pawn.move(how_to_go);
+    }
+}
+
+red_guy = new pawn('red')
+console.log(red_guy.x)
